@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import Carousel from "../components/Carousel";
 import Avatar from "@material-ui/core/Avatar";
 import { Gift } from "mdi-material-ui";
-import { withStyles } from "@material-ui/core/styles";
+import withStyles from "@material-ui/styles/withStyles";
 import withRoot from "../utils/withRoot";
 
 const styles = theme => ({
