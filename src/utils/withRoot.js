@@ -1,7 +1,7 @@
 // See https://github.com/mui-org/material-ui/tree/master/examples/gatsby
-import React from "react";
 import './installMuiStyles';
-import { ThemeProvider } from "@material-ui/styles";
+import React from "react";
+import { StylesProvider, ThemeProvider } from "@material-ui/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import getPageContext from "./getPageContext";
 import Hidden from "@material-ui/core/Hidden";
@@ -23,17 +23,22 @@ function withRoot(Component) {
 
     render() {
       return (
-        // ThemeProvider makes the theme available down the React
-        // tree thanks to React context.
-        <ThemeProvider
-          theme={this.muiPageContext.theme}
+        <StylesProvider
+          generateClassName={this.muiPageContext.generateClassName}
+          sheetsManager={this.muiPageContext.sheetsManager}
         >
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <Hidden implementation="css">
-            <Component {...this.props} />
-          </Hidden>
-        </ThemeProvider>
+          {/* ThemeProvider makes the theme available down the React
+          tree thanks to React context. */}
+          <ThemeProvider
+            theme={this.muiPageContext.theme}
+          >
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            <Hidden implementation="css">
+              <Component {...this.props} />
+            </Hidden>
+          </ThemeProvider>
+        </StylesProvider>
       );
     }
   }
